@@ -3,630 +3,1630 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="FruitLux — Premium organic and imported fruits for retail and wholesale. Fresh daily, delivered with quality and trust." />
-  <meta name="keywords" content="organic fruits, fresh fruits, wholesale fruits, premium fruits, fruit delivery" />
-  <meta property="og:title" content="FruitLux — Fresh Fruits Delivered with Quality & Trust" />
-  <meta property="og:description" content="Premium organic and imported fruits for retail and wholesale customers." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="FruitLux — Premium organic and imported fruits for retail and wholesale." />
   <title>FruitLux — Premium Fresh Fruits</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+/* ─────────────────────────────────────────────
+   CSS VARIABLES & RESET
+───────────────────────────────────────────── */
+:root {
+  --green: #2d6a4f;
+  --green-light: #52b788;
+  --green-pale: #d8f3dc;
+  --gold: #d4a843;
+  --gold-light: #f0c96e;
+  --cream: #faf8f3;
+  --white: #ffffff;
+  --dark: #1a1a1a;
+  --dark2: #2c2c2c;
+  --gray: #6b7280;
+  --gray-light: #e5e7eb;
+  --text: #1a1a1a;
+  --bg: #faf8f3;
+  --card-bg: #ffffff;
+  --nav-bg: rgba(250,248,243,0.95);
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+}
+.dark-mode {
+  --text: #f0ede6;
+  --bg: #111a14;
+  --card-bg: #1c2b20;
+  --nav-bg: rgba(17,26,20,0.95);
+  --gray-light: #2a3d2e;
+  --gray: #9ca3af;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.4);
+  --cream: #111a14;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-  <link rel="stylesheet" href="style.css" />
+/* ─── LOADER ─── */
+.loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loader.hidden { opacity: 0; visibility: hidden; }
+.loader-inner { text-align: center; }
+.loader-fruit { font-size: 3rem; animation: spin 1s linear infinite; display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-bar {
+  width: 200px; height: 4px; background: rgba(255,255,255,0.2);
+  border-radius: 99px; margin: 1rem auto; overflow: hidden;
+}
+.loader-bar span {
+  display: block; height: 100%; background: var(--gold);
+  border-radius: 99px; animation: loadbar 1.8s ease forwards;
+}
+@keyframes loadbar { from { width: 0; } to { width: 100%; } }
+.loader-inner p { color: white; font-size: 0.9rem; letter-spacing: 0.05em; opacity: 0.8; }
+
+/* ─── UTILITY ─── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 5rem 0; }
+.section-label {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--green-light);
+  margin-bottom: 0.5rem; display: block;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+  line-height: 1.15; color: var(--text); margin-bottom: 1rem;
+}
+.section-title em { color: var(--green); font-style: italic; }
+.section-sub { color: var(--gray); max-width: 520px; line-height: 1.7; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-header .section-sub { margin: 0 auto; }
+.body-text { color: var(--gray); line-height: 1.75; margin-bottom: 1rem; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 600; transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--green); color: white;
+  box-shadow: 0 4px 20px rgba(45,106,79,0.3);
+}
+.btn-primary:hover { background: #1e5038; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,106,79,0.4); }
+.btn-outline {
+  border: 2px solid rgba(255,255,255,0.6); color: white;
+  backdrop-filter: blur(4px);
+}
+.btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─────────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────────── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--nav-bg); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition);
+}
+.navbar.scrolled { border-bottom-color: var(--gray-light); box-shadow: var(--shadow); }
+.nav-container {
+  max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+  height: 70px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+.logo-icon { font-size: 1.4rem; }
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 700; color: var(--text);
+}
+.logo-text em { color: var(--green); font-style: italic; }
+.nav-links { display: flex; align-items: center; gap: 0.25rem; }
+.nav-links a {
+  padding: 0.4rem 0.9rem; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 500; color: var(--gray);
+  transition: all var(--transition);
+}
+.nav-links a:hover { color: var(--green); background: var(--green-pale); }
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+.dark-toggle, .cart-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--gray); transition: all var(--transition);
+  background: var(--card-bg);
+}
+.dark-toggle:hover, .cart-btn:hover { background: var(--green-pale); color: var(--green); }
+.cart-btn { position: relative; }
+.cart-count {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--gold); color: white; font-size: 0.65rem;
+  font-weight: 700; min-width: 18px; height: 18px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  display: none;
+}
+.cart-count.show { display: flex; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  width: 40px; height: 40px; align-items: center; justify-content: center;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text); border-radius: 2px; transition: all var(--transition);
+}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+}
+.hero-img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(20,50,30,0.82) 0%, rgba(45,106,79,0.55) 60%, rgba(0,0,0,0.3) 100%);
+}
+.float-fruits {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.ff {
+  position: absolute; font-size: 2rem;
+  animation: floatFruit 6s ease-in-out infinite;
+  opacity: 0.18;
+}
+.ff1 { top: 15%; left: 8%; animation-delay: 0s; font-size: 2.5rem; }
+.ff2 { top: 25%; right: 10%; animation-delay: 1s; font-size: 3rem; }
+.ff3 { top: 65%; left: 5%; animation-delay: 2s; }
+.ff4 { top: 75%; right: 12%; animation-delay: 0.5s; font-size: 1.5rem; }
+.ff5 { top: 45%; right: 5%; animation-delay: 1.5s; }
+.ff6 { top: 55%; left: 12%; animation-delay: 2.5s; font-size: 2.2rem; }
+@keyframes floatFruit {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 700px; padding: 0 1.5rem; margin-top: 70px;
+  margin-left: max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+}
+.hero-eyebrow {
+  color: var(--gold-light); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 700;
+  color: white; line-height: 1.1; margin-bottom: 1.25rem;
+}
+.hero-title em { color: var(--gold-light); font-style: italic; }
+.hero-sub {
+  color: rgba(255,255,255,0.8); font-size: 1.05rem;
+  line-height: 1.75; max-width: 520px; margin-bottom: 2rem;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+}
+.hero-badges span {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 0.8rem; padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+}
+.hero-badges span i { color: var(--gold-light); }
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 2;
+}
+.scroll-hint span {
+  display: block; width: 24px; height: 38px;
+  border: 2px solid rgba(255,255,255,0.5); border-radius: 12px;
+  position: relative;
+}
+.scroll-hint span::after {
+  content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 8px; background: white; border-radius: 2px;
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+@keyframes scrollBounce { 0%,100%{top:6px;opacity:1} 50%{top:16px;opacity:0.3} }
+
+/* ─────────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────────── */
+.about { background: var(--card-bg); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center; margin-bottom: 4rem;
+}
+.about-visuals { position: relative; }
+.about-img-main {
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4/3;
+}
+.about-img-main img { width: 100%; height: 100%; object-fit: cover; }
+.about-img-secondary {
+  position: absolute; bottom: -2rem; right: -2rem;
+  width: 200px; border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-lg);
+  border: 4px solid var(--card-bg);
+  aspect-ratio: 1;
+}
+.about-img-secondary img { width: 100%; height: 100%; object-fit: cover; }
+.about-badge-card {
+  position: absolute; top: -1.5rem; left: -1.5rem;
+  background: var(--green); color: white;
+  padding: 1rem 1.5rem; border-radius: var(--radius);
+  text-align: center; box-shadow: var(--shadow-lg);
+}
+.about-badge-card .gold-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700; color: var(--gold-light);
+  display: block;
+}
+.about-badge-card p { font-size: 0.75rem; opacity: 0.85; margin-top: 0.2rem; }
+.about-features { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.af-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.875rem; font-weight: 600; color: var(--green);
+}
+.af-item i { font-size: 1rem; }
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+}
+.stat-card {
+  text-align: center; padding: 2rem 1rem;
+  background: var(--bg); border-radius: var(--radius);
+  border: 1px solid var(--gray-light);
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 700; color: var(--green);
+}
+.stat-suffix { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--green); }
+.stat-card p { color: var(--gray); font-size: 0.85rem; margin-top: 0.3rem; }
+
+/* ─────────────────────────────────────────────
+   PRODUCTS
+───────────────────────────────────────────── */
+.products { background: var(--bg); }
+.filter-bar {
+  display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.filter-btn {
+  padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem;
+  font-weight: 600; color: var(--gray); background: var(--card-bg);
+  border: 2px solid var(--gray-light); transition: all var(--transition);
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--green); color: white; border-color: var(--green);
+}
+.products-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem;
+}
+.product-card {
+  background: var(--card-bg); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.product-card.hidden { display: none; }
+.pc-img-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.pc-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.product-card:hover .pc-img-wrap img { transform: scale(1.07); }
+.pc-badge {
+  position: absolute; top: 0.75rem; left: 0.75rem;
+  padding: 0.3rem 0.75rem; border-radius: 50px;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.organic-badge { background: var(--green); color: white; }
+.import-badge { background: var(--gold); color: white; }
+.seasonal-badge { background: #e85d04; color: white; }
+.pc-overlay {
+  position: absolute; inset: 0;
+  background: rgba(20,50,30,0.65);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity var(--transition);
+}
+.product-card:hover .pc-overlay { opacity: 1; }
+.pc-info { padding: 1.25rem; }
+.pc-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text);
+}
+.pc-info p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; margin-bottom: 0.75rem; }
+.pc-footer { display: flex; align-items: center; justify-content: space-between; }
+.price { font-weight: 700; color: var(--green); font-size: 1.05rem; }
+.price small { font-size: 0.75rem; color: var(--gray); font-weight: 400; }
+.pc-stars { color: var(--gold); font-size: 0.85rem; }
+
+/* ─────────────────────────────────────────────
+   WHY US
+───────────────────────────────────────────── */
+.why-us {
+  background: linear-gradient(135deg, var(--green) 0%, #1b4332 100%);
+}
+.why-us .section-label { color: var(--gold-light); }
+.why-us .section-title { color: white; }
+.why-us .section-title em { color: var(--gold-light); }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.why-card {
+  background: rgba(255,255,255,0.08); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius); padding: 2rem 1.5rem;
+  transition: all var(--transition);
+}
+.why-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
+.why-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--gold); display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; color: white; margin-bottom: 1.25rem;
+}
+.why-card h3 { color: white; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.why-card p { color: rgba(255,255,255,0.7); font-size: 0.875rem; line-height: 1.65; }
+
+/* ─────────────────────────────────────────────
+   TESTIMONIALS
+───────────────────────────────────────────── */
+.testimonials { background: var(--card-bg); }
+.testi-slider { position: relative; overflow: hidden; }
+.testi-track {
+  display: flex; gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+}
+.testi-card {
+  flex: 0 0 calc(33.333% - 1rem); min-width: 0;
+  background: var(--bg); border-radius: var(--radius);
+  padding: 2rem; border: 1px solid var(--gray-light);
+  position: relative;
+}
+.testi-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; color: var(--green-pale); line-height: 0.7;
+  margin-bottom: 0.75rem; font-weight: 700;
+}
+.dark-mode .testi-quote { color: rgba(82,183,136,0.2); }
+.testi-card > p { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem; }
+.testi-author { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.testi-author img {
+  width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--green-pale);
+}
+.testi-author strong { display: block; font-size: 0.9rem; color: var(--text); }
+.testi-author span { font-size: 0.75rem; color: var(--gray); }
+.testi-stars { color: var(--gold); font-size: 0.85rem; }
+.testi-controls {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  margin-top: 2rem;
+}
+.testi-prev, .testi-next {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--card-bg); border: 2px solid var(--gray-light);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); font-size: 0.9rem; transition: all var(--transition);
+}
+.testi-prev:hover, .testi-next:hover { background: var(--green); color: white; border-color: var(--green); }
+.testi-dots { display: flex; gap: 0.5rem; }
+.testi-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gray-light); transition: all var(--transition);
+}
+.testi-dot.active { background: var(--green); width: 22px; border-radius: 4px; }
+
+/* ─────────────────────────────────────────────
+   GALLERY
+───────────────────────────────────────────── */
+.gallery { background: var(--bg); }
+.gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
+  gap: 1rem;
+}
+.g-item {
+  border-radius: var(--radius-sm); overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.g-item.tall { grid-row: span 2; }
+.g-item.wide { grid-column: span 2; }
+.g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.g-item:hover img { transform: scale(1.06); }
+.g-overlay {
+  position: absolute; inset: 0;
+  background: rgba(20,50,30,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity var(--transition);
+  color: white; font-size: 1.5rem;
+}
+.g-item:hover .g-overlay { opacity: 1; }
+
+/* ─── LIGHTBOX ─── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all 0.3s ease;
+}
+.lightbox.active { opacity: 1; visibility: visible; }
+.lb-img {
+  max-width: 90vw; max-height: 85vh;
+  border-radius: var(--radius-sm); object-fit: contain;
+}
+.lb-close, .lb-prev, .lb-next {
+  position: absolute; background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white; width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition); font-size: 1rem;
+}
+.lb-close { top: 1.5rem; right: 1.5rem; }
+.lb-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+.lb-close:hover, .lb-prev:hover, .lb-next:hover { background: var(--green); }
+
+/* ─────────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────────── */
+.contact { background: var(--card-bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-form {
+  background: var(--bg); border-radius: var(--radius);
+  padding: 2rem; border: 1px solid var(--gray-light);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-light); background: var(--card-bg);
+  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-success {
+  margin-top: 1rem; color: var(--green); font-size: 0.875rem;
+  font-weight: 600; display: none;
+}
+.form-success.show { display: block; }
+.ci-card {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--bg); border: 1px solid var(--gray-light);
+  border-radius: var(--radius); padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.ci-card i { font-size: 1.25rem; color: var(--green); margin-top: 0.15rem; }
+.ci-card strong { display: block; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.ci-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+.map-wrap { border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
+.whatsapp-inline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #25d366; color: white; padding: 0.6rem 1.25rem;
+  border-radius: 50px; font-size: 0.875rem; font-weight: 600;
+  transition: all var(--transition);
+}
+.whatsapp-inline:hover { background: #1da851; transform: translateY(-2px); }
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+.footer { background: #0f1f17; color: rgba(255,255,255,0.75); padding: 4rem 0 2rem; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand .nav-logo .logo-text { color: white; }
+.footer-brand > p { font-size: 0.875rem; line-height: 1.7; margin: 1rem 0; color: rgba(255,255,255,0.6); }
+.social-links { display: flex; gap: 0.6rem; }
+.social-links a {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.6); font-size: 0.85rem;
+  transition: all var(--transition);
+}
+.social-links a:hover { background: var(--green); color: white; border-color: var(--green); }
+.footer-links h4 { color: white; font-size: 0.95rem; margin-bottom: 1.25rem; }
+.footer-links ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.55); transition: color var(--transition); }
+.footer-links a:hover { color: var(--green-light); }
+.footer-newsletter h4 { color: white; font-size: 0.95rem; margin-bottom: 0.5rem; }
+.footer-newsletter > p { font-size: 0.85rem; margin-bottom: 1rem; color: rgba(255,255,255,0.55); }
+.nl-form {
+  display: flex; border-radius: 50px; overflow: hidden;
+  border: 1.5px solid rgba(255,255,255,0.15);
+}
+.nl-form input {
+  flex: 1; padding: 0.65rem 1rem; background: rgba(255,255,255,0.07);
+  border: none; color: white; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+  outline: none;
+}
+.nl-form input::placeholder { color: rgba(255,255,255,0.35); }
+.nl-form button {
+  padding: 0 1rem; background: var(--green); color: white;
+  font-size: 0.9rem; transition: background var(--transition);
+}
+.nl-form button:hover { background: var(--green-light); }
+.nl-success { color: var(--green-light); font-size: 0.8rem; margin-top: 0.5rem; display: none; }
+.nl-success.show { display: block; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+.footer-bottom-links { display: flex; gap: 1.25rem; }
+.footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); transition: color var(--transition); }
+.footer-bottom-links a:hover { color: white; }
+
+/* ─────────────────────────────────────────────
+   FLOATING BUTTONS
+───────────────────────────────────────────── */
+.fab-whatsapp {
+  position: fixed; bottom: 6rem; right: 1.5rem; z-index: 999;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #25d366; color: white; font-size: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+  transition: all var(--transition);
+}
+.fab-whatsapp:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+.back-to-top {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--green); color: white; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow); transition: all var(--transition);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+}
+.back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { background: #1e5038; transform: translateY(-3px); }
+
+/* ─────────────────────────────────────────────
+   CART DRAWER
+───────────────────────────────────────────── */
+.cart-drawer {
+  position: fixed; top: 0; right: -400px; width: 380px; height: 100vh;
+  background: var(--card-bg); z-index: 1500; padding: 1.5rem;
+  box-shadow: var(--shadow-lg); transition: right 0.4s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.cart-drawer.open { right: 0; }
+.cart-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 1499; opacity: 0; visibility: hidden; transition: all var(--transition);
+  backdrop-filter: blur(2px);
+}
+.cart-backdrop.show { opacity: 1; visibility: visible; }
+.cart-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+.cart-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; }
+.cart-close {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--gray-light);
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--transition);
+}
+.cart-close:hover { background: var(--green); color: white; }
+.cart-items { flex: 1; overflow-y: auto; }
+.cart-empty { color: var(--gray); font-size: 0.9rem; text-align: center; padding: 2rem; }
+.cart-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem 0; border-bottom: 1px solid var(--gray-light);
+}
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: 600; font-size: 0.9rem; }
+.cart-item-price { font-size: 0.8rem; color: var(--gray); }
+.cart-item-qty {
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.cart-item-qty button {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--gray-light); font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+}
+.cart-item-qty button:hover { background: var(--green); color: white; }
+.cart-item-qty span { font-weight: 600; font-size: 0.9rem; min-width: 20px; text-align: center; }
+.cart-item-remove {
+  color: var(--gray); font-size: 0.8rem; transition: color var(--transition);
+}
+.cart-item-remove:hover { color: #ef4444; }
+.cart-total {
+  border-top: 2px solid var(--gray-light); padding: 1rem 0;
+  font-weight: 700; font-size: 1.05rem; text-align: right;
+  color: var(--green);
+}
+#checkoutBtn { margin-top: 0.75rem; }
+
+/* ─── NOTIFICATION TOAST ─── */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--green); color: white; padding: 0.75rem 1.5rem;
+  border-radius: 50px; font-size: 0.875rem; font-weight: 600;
+  box-shadow: var(--shadow-lg); z-index: 3000;
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1), opacity 0.4s ease;
+  opacity: 0; white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ─────────────────────────────────────────────
+   MOBILE NAV OVERLAY
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 70px; left: 0; right: 0;
+    background: var(--nav-bg); backdrop-filter: blur(12px);
+    flex-direction: column; padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-light);
+    transform: translateY(-120%); opacity: 0;
+    transition: all 0.35s ease; z-index: 999; gap: 0.25rem;
+  }
+  .nav-links.open { transform: translateY(0); opacity: 1; }
+  .nav-links a { width: 100%; padding: 0.65rem 1rem; border-radius: var(--radius-sm); }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .hero-content { margin-left: 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-img-secondary { width: 140px; bottom: -1.5rem; right: -1rem; }
+  .about-badge-card { top: -1rem; left: -0.5rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .testi-card { flex: 0 0 85%; }
+  .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+  .g-item.wide { grid-column: span 2; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .cart-drawer { width: 100%; right: -100%; }
+  .cart-drawer.open { right: 0; }
+}
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .gallery-masonry { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .g-item.tall, .g-item.wide { grid-column: span 1; grid-row: span 1; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .hero-ctas .btn { align-self: flex-start; }
+  .section { padding: 3rem 0; }
+}
+</style>
 </head>
-<body class="light-mode" data-scroll="0">
+<body class="light-mode" id="body">
 
-  <!-- ═══════════════ LOADING SCREEN ═══════════════ -->
-  <div id="loader" class="loader">
-    <div class="loader-inner">
-      <div class="loader-fruit">🍊</div>
-      <div class="loader-bar"><span></span></div>
-      <p>Harvesting freshness…</p>
-    </div>
+<!-- ═══════════════ LOADER ═══════════════ -->
+<div id="loader" class="loader">
+  <div class="loader-inner">
+    <div class="loader-fruit">🍊</div>
+    <div class="loader-bar"><span></span></div>
+    <p>Harvesting freshness…</p>
   </div>
+</div>
 
-  <!-- ═══════════════ NAVBAR ═══════════════ -->
-  <header class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <span class="logo-icon">🌿</span>
-        <span class="logo-text">Fruit<em>Lux</em></span>
-      </a>
-
-      <nav class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#products">Shop</a>
-        <a href="#why-us">Why Us</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#testimonials">Reviews</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="cart-btn" id="cartBtn" aria-label="Cart">
-          <i class="fas fa-shopping-basket"></i>
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ═══════════════ HERO ═══════════════ -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1800&q=80" alt="Fresh fruits" class="hero-img" loading="lazy" />
-      <div class="hero-overlay"></div>
-    </div>
-
-    <!-- Floating decorative fruits -->
-    <div class="float-fruits" aria-hidden="true">
-      <span class="ff ff1">🍎</span>
-      <span class="ff ff2">🥭</span>
-      <span class="ff ff3">🍇</span>
-      <span class="ff ff4">🍓</span>
-      <span class="ff ff5">🍊</span>
-      <span class="ff ff6">🍋</span>
-    </div>
-
-    <div class="hero-content reveal">
-      <p class="hero-eyebrow">🌿 100% Organic &amp; Imported</p>
-      <h1 class="hero-title">Fresh Fruits Delivered<br /><em>with Quality &amp; Trust</em></h1>
-      <p class="hero-sub">From orchard to doorstep — we source the world's finest fruits for you. Retail &amp; wholesale, always fresh, always premium.</p>
-      <div class="hero-ctas">
-        <a href="#products" class="btn btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
-        <a href="#contact" class="btn btn-outline">Contact Us</a>
-      </div>
-      <div class="hero-badges">
-        <span><i class="fas fa-leaf"></i> Certified Organic</span>
-        <span><i class="fas fa-truck"></i> Same-Day Delivery</span>
-        <span><i class="fas fa-award"></i> Premium Grade</span>
-      </div>
-    </div>
-
-    <a href="#about" class="scroll-hint" aria-label="Scroll down">
-      <span></span>
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="nav-logo">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Fruit<em>Lux</em></span>
     </a>
-  </section>
-
-  <!-- ═══════════════ ABOUT ═══════════════ -->
-  <section class="about section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-visuals reveal">
-          <div class="about-img-main">
-            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=800&q=80" alt="Fresh market fruits" loading="lazy" />
-          </div>
-          <div class="about-img-secondary">
-            <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&q=80" alt="Organic produce" loading="lazy" />
-          </div>
-          <div class="about-badge-card">
-            <span class="gold-text">25+</span>
-            <p>Years of Excellence</p>
-          </div>
-        </div>
-
-        <div class="about-text reveal">
-          <p class="section-label">Our Story</p>
-          <h2 class="section-title">Nature's Best,<br /><em>Curated for You</em></h2>
-          <p class="body-text">FruitLux began as a family orchard in 1999 and has grown into one of the region's most trusted premium fruit suppliers. We bridge the gap between farm and family — sourcing organic, seasonal, and exotic fruits from global origins.</p>
-          <p class="body-text">Our mission: deliver uncompromising freshness with every order. Our vision: a world where everyone has access to nature's finest produce.</p>
-
-          <div class="about-features">
-            <div class="af-item">
-              <i class="fas fa-seedling"></i>
-              <span>Ethically Sourced</span>
-            </div>
-            <div class="af-item">
-              <i class="fas fa-temperature-low"></i>
-              <span>Cold-Chain Preserved</span>
-            </div>
-            <div class="af-item">
-              <i class="fas fa-certificate"></i>
-              <span>Quality Certified</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stats Row -->
-      <div class="stats-row reveal">
-        <div class="stat-card">
-          <span class="stat-num counter" data-target="25">0</span><span class="stat-suffix">+</span>
-          <p>Years Experience</p>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num counter" data-target="12000">0</span><span class="stat-suffix">+</span>
-          <p>Happy Customers</p>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num counter" data-target="850">0</span><span class="stat-suffix">+</span>
-          <p>Daily Deliveries</p>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num counter" data-target="120">0</span><span class="stat-suffix">+</span>
-          <p>Fruit Varieties</p>
-        </div>
-      </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#products">Shop</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="Cart">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </section>
-
-  <!-- ═══════════════ PRODUCTS ═══════════════ -->
-  <section class="products section" id="products">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Our Selection</p>
-        <h2 class="section-title">Featured <em>Fruits</em></h2>
-        <p class="section-sub">Hand-picked, grade-A fruits sourced from certified organic farms worldwide.</p>
-      </div>
-
-      <!-- Filter -->
-      <div class="filter-bar reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="organic">Organic</button>
-        <button class="filter-btn" data-filter="imported">Imported</button>
-        <button class="filter-btn" data-filter="seasonal">Seasonal</button>
-      </div>
-
-      <div class="products-grid" id="productsGrid">
-
-        <div class="product-card reveal" data-category="organic">
-          <div class="pc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&q=80" alt="Premium Apples" loading="lazy" />
-            <span class="pc-badge organic-badge">Organic</span>
-            <div class="pc-overlay">
-              <button class="btn btn-primary add-cart" data-name="Premium Apples" data-price="4.99">Add to Cart</button>
-            </div>
-          </div>
-          <div class="pc-info">
-            <h3>Premium Red Apples</h3>
-            <p>Crisp, sweet Fuji apples from high-altitude orchards.</p>
-            <div class="pc-footer">
-              <span class="price">$4.99 <small>/ kg</small></span>
-              <div class="pc-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" data-category="imported">
-          <div class="pc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80" alt="Alphonso Mangoes" loading="lazy" />
-            <span class="pc-badge import-badge">Imported</span>
-            <div class="pc-overlay">
-              <button class="btn btn-primary add-cart" data-name="Alphonso Mangoes" data-price="8.99">Add to Cart</button>
-            </div>
-          </div>
-          <div class="pc-info">
-            <h3>Alphonso Mangoes</h3>
-            <p>India's king of mangoes — rich, creamy, and aromatic.</p>
-            <div class="pc-footer">
-              <span class="price">$8.99 <small>/ kg</small></span>
-              <div class="pc-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" data-category="organic">
-          <div class="pc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80" alt="Organic Bananas" loading="lazy" />
-            <span class="pc-badge organic-badge">Organic</span>
-            <div class="pc-overlay">
-              <button class="btn btn-primary add-cart" data-name="Organic Bananas" data-price="2.49">Add to Cart</button>
-            </div>
-          </div>
-          <div class="pc-info">
-            <h3>Organic Cavendish Bananas</h3>
-            <p>Naturally ripened, potassium-rich bananas from certified farms.</p>
-            <div class="pc-footer">
-              <span class="price">$2.49 <small>/ bunch</small></span>
-              <div class="pc-stars">★★★★☆</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" data-category="imported">
-          <div class="pc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&q=80" alt="Black Grapes" loading="lazy" />
-            <span class="pc-badge import-badge">Imported</span>
-            <div class="pc-overlay">
-              <button class="btn btn-primary add-cart" data-name="Black Seedless Grapes" data-price="6.49">Add to Cart</button>
-            </div>
-          </div>
-          <div class="pc-info">
-            <h3>Black Seedless Grapes</h3>
-            <p>Plump, juicy grapes with a deep, sweet-wine flavour.</p>
-            <div class="pc-footer">
-              <span class="price">$6.49 <small>/ kg</small></span>
-              <div class="pc-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" data-category="seasonal">
-          <div class="pc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?w=600&q=80" alt="Navel Oranges" loading="lazy" />
-            <span class="pc-badge seasonal-badge">Seasonal</span>
-            <div class="pc-overlay">
-              <button class="btn btn-primary add-cart" data-name="Navel Oranges" data-price="3.99">Add to Cart</button>
-            </div>
-          </div>
-          <div class="pc-info">
-            <h3>Navel Oranges</h3>
-            <p>Seedless, sun-kissed oranges bursting with Vitamin C.</p>
-            <div class="pc-footer">
-              <span class="price">$3.99 <small>/ kg</small></span>
-              <div class="pc-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal" data-category="organic">
-          <div class="pc-img-wrap">
-            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=80" alt="Strawberries" loading="lazy" />
-            <span class="pc-badge organic-badge">Organic</span>
-            <div class="pc-overlay">
-              <button class="btn btn-primary add-cart" data-name="Fresh Strawberries" data-price="5.99">Add to Cart</button>
-            </div>
-          </div>
-          <div class="pc-info">
-            <h3>Fresh Strawberries</h3>
-            <p>Hand-picked, pesticide-free strawberries — sweet and vibrant.</p>
-            <div class="pc-footer">
-              <span class="price">$5.99 <small>/ punnet</small></span>
-              <div class="pc-stars">★★★★★</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ WHY CHOOSE US ═══════════════ -->
-  <section class="why-us section" id="why-us">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Our Promise</p>
-        <h2 class="section-title">Why Choose <em>FruitLux</em></h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fas fa-sun"></i></div>
-          <h3>Fresh Daily</h3>
-          <p>Every delivery leaves our cold-storage facility within hours of arrival from the farm.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fas fa-leaf"></i></div>
-          <h3>Certified Organic</h3>
-          <p>All organic lines carry third-party certification. Zero pesticides, zero compromise.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fas fa-bolt"></i></div>
-          <h3>Fast Delivery</h3>
-          <p>Same-day city delivery. Next-day nationwide. Tracked from our door to yours.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fas fa-boxes"></i></div>
-          <h3>Wholesale Supply</h3>
-          <p>Custom bulk pricing for restaurants, hotels, and supermarkets. Flexible MOQs.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fas fa-medal"></i></div>
-          <h3>Premium Quality</h3>
-          <p>Grade-A produce only. Our 12-point QC check ensures perfection every time.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fas fa-headset"></i></div>
-          <h3>Dedicated Support</h3>
-          <p>A real human answers your calls. 7 days a week, 6 AM – 10 PM support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
-  <section class="testimonials section" id="testimonials">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Voices</p>
-        <h2 class="section-title">What Our Customers <em>Say</em></h2>
-      </div>
-      <div class="testi-slider reveal">
-        <div class="testi-track" id="testiTrack">
-
-          <div class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>FruitLux completely changed how our hotel sources produce. The quality is extraordinary and the delivery is always on time. Our guests notice the difference immediately.</p>
-            <div class="testi-author">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="James Thornton" loading="lazy" />
-              <div>
-                <strong>James Thornton</strong>
-                <span>F&B Director, The Grand Hotel</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-
-          <div class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>I've been ordering weekly for two years. The Alphonso mangoes alone are worth every penny. My family refuses to buy fruit anywhere else now!</p>
-            <div class="testi-author">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Sophia Chen" loading="lazy" />
-              <div>
-                <strong>Sophia Chen</strong>
-                <span>Home Customer, Regular Subscriber</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-
-          <div class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>As a restaurant owner, freshness is everything. FruitLux delivers at 5 AM sharp, every day. Zero spoilage, flawless presentation — this partnership has been seamless.</p>
-            <div class="testi-author">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Marco Bianchi" loading="lazy" />
-              <div>
-                <strong>Marco Bianchi</strong>
-                <span>Chef-Owner, Verdura Ristorante</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-
-          <div class="testi-card">
-            <div class="testi-quote">"</div>
-            <p>The wholesale team worked with our budget to build a custom package. Pricing is transparent, produce is immaculate. We've tripled our fruit section sales since switching.</p>
-            <div class="testi-author">
-              <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=80" alt="Aisha Okafor" loading="lazy" />
-              <div>
-                <strong>Aisha Okafor</strong>
-                <span>Procurement Manager, FreshMart</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-
-        </div>
-
-        <div class="testi-controls">
-          <button class="testi-prev" id="testiPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-          <div class="testi-dots" id="testiDots"></div>
-          <button class="testi-next" id="testiNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ GALLERY ═══════════════ -->
-  <section class="gallery section" id="gallery">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Gallery</p>
-        <h2 class="section-title">A Feast <em>for the Eyes</em></h2>
-      </div>
-      <div class="gallery-masonry" id="galleryGrid">
-        <div class="g-item reveal tall" data-src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1200&q=80">
-          <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&q=80" alt="Fruit bowl" loading="lazy" />
-          <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-        <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=1200&q=80">
-          <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=600&q=80" alt="Fresh oranges" loading="lazy" />
-          <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-        <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=1200&q=80">
-          <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600&q=80" alt="Berries close-up" loading="lazy" />
-          <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-        <div class="g-item reveal wide" data-src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=1200&q=80">
-          <img src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=800&q=80" alt="Tropical fruits" loading="lazy" />
-          <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-        <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1546548970-71785318a17b?w=1200&q=80">
-          <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?w=600&q=80" alt="Mango slices" loading="lazy" />
-          <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-        <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=1200&q=80">
-          <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80" alt="Grapes on vine" loading="lazy" />
-          <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ LIGHTBOX ═══════════════ -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-    <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
-    <button class="lb-prev" id="lbPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-    <img class="lb-img" id="lbImg" src="" alt="Gallery image" />
-    <button class="lb-next" id="lbNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
   </div>
+</header>
 
-  <!-- ═══════════════ CONTACT ═══════════════ -->
-  <section class="contact section" id="contact">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="section-label">Get in Touch</p>
-        <h2 class="section-title">Order or <em>Enquire</em></h2>
-      </div>
-      <div class="contact-grid">
-
-        <!-- Form -->
-        <div class="contact-form-wrap reveal">
-          <form class="contact-form" id="contactForm" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your name" required />
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="+1 000 000 0000" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="hello@example.com" required />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <select id="subject" name="subject">
-                <option value="">— Select subject —</option>
-                <option>Retail Order</option>
-                <option>Wholesale Enquiry</option>
-                <option>Delivery Question</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell us about your requirements…" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              Send Message <i class="fas fa-paper-plane"></i>
-            </button>
-            <p class="form-success" id="formSuccess">✅ Message sent! We'll get back to you within 24 hours.</p>
-          </form>
-        </div>
-
-        <!-- Info -->
-        <div class="contact-info reveal">
-          <div class="ci-card">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <strong>Visit Us</strong>
-              <p>FruitLux Distribution Centre<br />142 Orchard Lane, Green District<br />New York, NY 10001</p>
-            </div>
-          </div>
-          <div class="ci-card">
-            <i class="fas fa-phone-alt"></i>
-            <div>
-              <strong>Call Us</strong>
-              <p>+1 (800) 555-FRUIT<br />Mon–Sat, 6 AM – 8 PM</p>
-            </div>
-          </div>
-          <div class="ci-card">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <strong>Email Us</strong>
-              <p>orders@fruitlux.com<br />wholesale@fruitlux.com</p>
-            </div>
-          </div>
-
-          <!-- Map placeholder -->
-          <div class="map-wrap">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9!2d-73.9857!3d40.7484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI5JzU0LjIiTiA3M8KwNTknMDguNSJX!5e0!3m2!1sen!2sus!4v1234567890"
-              width="100%" height="220" style="border:0;border-radius:12px;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade" title="FruitLux Location">
-            </iframe>
-          </div>
-
-          <a href="https://wa.me/18005553784" class="whatsapp-inline" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ FOOTER ═══════════════ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-
-        <div class="footer-brand">
-          <a href="#" class="nav-logo">
-            <span class="logo-icon">🌿</span>
-            <span class="logo-text">Fruit<em>Lux</em></span>
-          </a>
-          <p>Premium organic and imported fruits for retail and wholesale. Freshness guaranteed, every single day.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-
-        <div class="footer-links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#products">Shop</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4>Products</h4>
-          <ul>
-            <li><a href="#">Organic Fruits</a></li>
-            <li><a href="#">Imported Fruits</a></li>
-            <li><a href="#">Seasonal Picks</a></li>
-            <li><a href="#">Wholesale</a></li>
-            <li><a href="#">Gift Hampers</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-newsletter">
-          <h4>Newsletter</h4>
-          <p>Get seasonal deals and harvest alerts in your inbox.</p>
-          <form class="nl-form" id="nlForm">
-            <input type="email" placeholder="your@email.com" required aria-label="Email for newsletter" />
-            <button type="submit" aria-label="Subscribe"><i class="fas fa-arrow-right"></i></button>
-          </form>
-          <p class="nl-success" id="nlSuccess">🌿 You're subscribed!</p>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2025 FruitLux. All rights reserved.</p>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ═══════════════ FLOATING BUTTONS ═══════════════ -->
-  <a href="https://wa.me/18005553784" class="fab-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- Cart drawer -->
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>Your Basket</h3>
-      <button class="cart-close" id="cartClose" aria-label="Close cart"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="cart-items" id="cartItems"><p class="cart-empty">Your basket is empty 🍃</p></div>
-    <div class="cart-total" id="cartTotal"></div>
-    <button class="btn btn-primary btn-full" id="checkoutBtn">Checkout <i class="fas fa-arrow-right"></i></button>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1800&q=80"
+      alt="Fresh fruits"
+      class="hero-img"
+      onerror="this.src='https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=1800&q=80'"
+    />
+    <div class="hero-overlay"></div>
   </div>
-  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <div class="float-fruits" aria-hidden="true">
+    <span class="ff ff1">🍎</span>
+    <span class="ff ff2">🥭</span>
+    <span class="ff ff3">🍇</span>
+    <span class="ff ff4">🍓</span>
+    <span class="ff ff5">🍊</span>
+    <span class="ff ff6">🍋</span>
+  </div>
+  <div class="hero-content reveal">
+    <p class="hero-eyebrow">🌿 100% Organic &amp; Imported</p>
+    <h1 class="hero-title">Fresh Fruits Delivered<br /><em>with Quality &amp; Trust</em></h1>
+    <p class="hero-sub">From orchard to doorstep — we source the world's finest fruits for you. Retail &amp; wholesale, always fresh, always premium.</p>
+    <div class="hero-ctas">
+      <a href="#products" class="btn btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+      <a href="#contact" class="btn btn-outline">Contact Us</a>
+    </div>
+    <div class="hero-badges">
+      <span><i class="fas fa-leaf"></i> Certified Organic</span>
+      <span><i class="fas fa-truck"></i> Same-Day Delivery</span>
+      <span><i class="fas fa-award"></i> Premium Grade</span>
+    </div>
+  </div>
+  <a href="#about" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+</section>
 
-  <script src="app.js"></script>
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visuals reveal">
+        <div class="about-img-main">
+          <img
+            src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=800&q=80"
+            alt="Fresh market fruits"
+            onerror="this.src='https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=800&q=80'"
+          />
+        </div>
+        <div class="about-img-secondary">
+          <img
+            src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&q=80"
+            alt="Organic produce"
+            onerror="this.src='https://images.unsplash.com/photo-1546548970-71785318a17b?w=500&q=80'"
+          />
+        </div>
+        <div class="about-badge-card">
+          <span class="gold-text">25+</span>
+          <p>Years of Excellence</p>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">Nature's Best,<br /><em>Curated for You</em></h2>
+        <p class="body-text">FruitLux began as a family orchard in 1999 and has grown into one of the region's most trusted premium fruit suppliers. We bridge the gap between farm and family — sourcing organic, seasonal, and exotic fruits from global origins.</p>
+        <p class="body-text">Our mission: deliver uncompromising freshness with every order. Our vision: a world where everyone has access to nature's finest produce.</p>
+        <div class="about-features">
+          <div class="af-item"><i class="fas fa-seedling"></i><span>Ethically Sourced</span></div>
+          <div class="af-item"><i class="fas fa-temperature-low"></i><span>Cold-Chain Preserved</span></div>
+          <div class="af-item"><i class="fas fa-certificate"></i><span>Quality Certified</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-row reveal">
+      <div class="stat-card">
+        <span class="stat-num counter" data-target="25">0</span><span class="stat-suffix">+</span>
+        <p>Years Experience</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num counter" data-target="12000">0</span><span class="stat-suffix">+</span>
+        <p>Happy Customers</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num counter" data-target="850">0</span><span class="stat-suffix">+</span>
+        <p>Daily Deliveries</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num counter" data-target="120">0</span><span class="stat-suffix">+</span>
+        <p>Fruit Varieties</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRODUCTS ═══════════════ -->
+<section class="products section" id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Our Selection</p>
+      <h2 class="section-title">Featured <em>Fruits</em></h2>
+      <p class="section-sub">Hand-picked, grade-A fruits sourced from certified organic farms worldwide.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="organic">Organic</button>
+      <button class="filter-btn" data-filter="imported">Imported</button>
+      <button class="filter-btn" data-filter="seasonal">Seasonal</button>
+    </div>
+    <div class="products-grid" id="productsGrid">
+
+      <div class="product-card reveal" data-category="organic">
+        <div class="pc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&q=80" alt="Premium Red Apples"
+            onerror="this.src='https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&q=80'" />
+          <span class="pc-badge organic-badge">Organic</span>
+          <div class="pc-overlay">
+            <button class="btn btn-primary add-cart" data-name="Premium Red Apples" data-price="4.99">Add to Cart</button>
+          </div>
+        </div>
+        <div class="pc-info">
+          <h3>Premium Red Apples</h3>
+          <p>Crisp, sweet Fuji apples from high-altitude orchards.</p>
+          <div class="pc-footer">
+            <span class="price">$4.99 <small>/ kg</small></span>
+            <div class="pc-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="imported">
+        <div class="pc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80" alt="Alphonso Mangoes"
+            onerror="this.src='https://images.unsplash.com/photo-1546548970-71785318a17b?w=600&q=80'" />
+          <span class="pc-badge import-badge">Imported</span>
+          <div class="pc-overlay">
+            <button class="btn btn-primary add-cart" data-name="Alphonso Mangoes" data-price="8.99">Add to Cart</button>
+          </div>
+        </div>
+        <div class="pc-info">
+          <h3>Alphonso Mangoes</h3>
+          <p>India's king of mangoes — rich, creamy, and aromatic.</p>
+          <div class="pc-footer">
+            <span class="price">$8.99 <small>/ kg</small></span>
+            <div class="pc-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="organic">
+        <div class="pc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80" alt="Organic Bananas"
+            onerror="this.src='https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=600&q=80'" />
+          <span class="pc-badge organic-badge">Organic</span>
+          <div class="pc-overlay">
+            <button class="btn btn-primary add-cart" data-name="Organic Bananas" data-price="2.49">Add to Cart</button>
+          </div>
+        </div>
+        <div class="pc-info">
+          <h3>Organic Cavendish Bananas</h3>
+          <p>Naturally ripened, potassium-rich bananas from certified farms.</p>
+          <div class="pc-footer">
+            <span class="price">$2.49 <small>/ bunch</small></span>
+            <div class="pc-stars">★★★★☆</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="imported">
+        <div class="pc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&q=80" alt="Black Seedless Grapes"
+            onerror="this.src='https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80'" />
+          <span class="pc-badge import-badge">Imported</span>
+          <div class="pc-overlay">
+            <button class="btn btn-primary add-cart" data-name="Black Seedless Grapes" data-price="6.49">Add to Cart</button>
+          </div>
+        </div>
+        <div class="pc-info">
+          <h3>Black Seedless Grapes</h3>
+          <p>Plump, juicy grapes with a deep, sweet-wine flavour.</p>
+          <div class="pc-footer">
+            <span class="price">$6.49 <small>/ kg</small></span>
+            <div class="pc-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="seasonal">
+        <div class="pc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=600&q=80" alt="Navel Oranges"
+            onerror="this.src='https://images.unsplash.com/photo-1557800636-894a64c1696f?w=600&q=80'" />
+          <span class="pc-badge seasonal-badge">Seasonal</span>
+          <div class="pc-overlay">
+            <button class="btn btn-primary add-cart" data-name="Navel Oranges" data-price="3.99">Add to Cart</button>
+          </div>
+        </div>
+        <div class="pc-info">
+          <h3>Navel Oranges</h3>
+          <p>Seedless, sun-kissed oranges bursting with Vitamin C.</p>
+          <div class="pc-footer">
+            <span class="price">$3.99 <small>/ kg</small></span>
+            <div class="pc-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-category="organic">
+        <div class="pc-img-wrap">
+          <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=80" alt="Fresh Strawberries"
+            onerror="this.src='https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600&q=80'" />
+          <span class="pc-badge organic-badge">Organic</span>
+          <div class="pc-overlay">
+            <button class="btn btn-primary add-cart" data-name="Fresh Strawberries" data-price="5.99">Add to Cart</button>
+          </div>
+        </div>
+        <div class="pc-info">
+          <h3>Fresh Strawberries</h3>
+          <p>Hand-picked, pesticide-free strawberries — sweet and vibrant.</p>
+          <div class="pc-footer">
+            <span class="price">$5.99 <small>/ punnet</small></span>
+            <div class="pc-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHY CHOOSE US ═══════════════ -->
+<section class="why-us section" id="why-us">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Our Promise</p>
+      <h2 class="section-title">Why Choose <em>FruitLux</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="why-icon"><i class="fas fa-sun"></i></div><h3>Fresh Daily</h3><p>Every delivery leaves our cold-storage facility within hours of arrival from the farm.</p></div>
+      <div class="why-card reveal"><div class="why-icon"><i class="fas fa-leaf"></i></div><h3>Certified Organic</h3><p>All organic lines carry third-party certification. Zero pesticides, zero compromise.</p></div>
+      <div class="why-card reveal"><div class="why-icon"><i class="fas fa-bolt"></i></div><h3>Fast Delivery</h3><p>Same-day city delivery. Next-day nationwide. Tracked from our door to yours.</p></div>
+      <div class="why-card reveal"><div class="why-icon"><i class="fas fa-boxes"></i></div><h3>Wholesale Supply</h3><p>Custom bulk pricing for restaurants, hotels, and supermarkets. Flexible MOQs.</p></div>
+      <div class="why-card reveal"><div class="why-icon"><i class="fas fa-medal"></i></div><h3>Premium Quality</h3><p>Grade-A produce only. Our 12-point QC check ensures perfection every time.</p></div>
+      <div class="why-card reveal"><div class="why-icon"><i class="fas fa-headset"></i></div><h3>Dedicated Support</h3><p>A real human answers your calls. 7 days a week, 6 AM – 10 PM support.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Voices</p>
+      <h2 class="section-title">What Our Customers <em>Say</em></h2>
+    </div>
+    <div class="testi-slider reveal">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p>FruitLux completely changed how our hotel sources produce. The quality is extraordinary and the delivery is always on time. Our guests notice the difference immediately.</p>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="James Thornton"
+              onerror="this.src='https://ui-avatars.com/api/?name=James+Thornton&background=2d6a4f&color=fff&size=100'" />
+            <div><strong>James Thornton</strong><span>F&amp;B Director, The Grand Hotel</span></div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p>I've been ordering weekly for two years. The Alphonso mangoes alone are worth every penny. My family refuses to buy fruit anywhere else now!</p>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Sophia Chen"
+              onerror="this.src='https://ui-avatars.com/api/?name=Sophia+Chen&background=d4a843&color=fff&size=100'" />
+            <div><strong>Sophia Chen</strong><span>Home Customer, Regular Subscriber</span></div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p>As a restaurant owner, freshness is everything. FruitLux delivers at 5 AM sharp, every day. Zero spoilage, flawless presentation — seamless partnership.</p>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Marco Bianchi"
+              onerror="this.src='https://ui-avatars.com/api/?name=Marco+Bianchi&background=2d6a4f&color=fff&size=100'" />
+            <div><strong>Marco Bianchi</strong><span>Chef-Owner, Verdura Ristorante</span></div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">"</div>
+          <p>The wholesale team worked with our budget to build a custom package. Pricing is transparent, produce is immaculate. We've tripled our fruit section sales since switching.</p>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=80" alt="Aisha Okafor"
+              onerror="this.src='https://ui-avatars.com/api/?name=Aisha+Okafor&background=d4a843&color=fff&size=100'" />
+            <div><strong>Aisha Okafor</strong><span>Procurement Manager, FreshMart</span></div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="testi-controls">
+        <button class="testi-prev" id="testiPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-next" id="testiNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Gallery</p>
+      <h2 class="section-title">A Feast <em>for the Eyes</em></h2>
+    </div>
+    <div class="gallery-masonry" id="galleryGrid">
+      <div class="g-item reveal tall" data-src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&q=80" alt="Fruit bowl"
+          onerror="this.src='https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=600&q=80'" />
+        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=600&q=80" alt="Fresh oranges"
+          onerror="this.src='https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=600&q=80'" />
+        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600&q=80" alt="Berries"
+          onerror="this.src='https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=80'" />
+        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="g-item reveal wide" data-src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=800&q=80" alt="Tropical fruits"
+          onerror="this.src='https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=800&q=80'" />
+        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1546548970-71785318a17b?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1546548970-71785318a17b?w=600&q=80" alt="Mango slices"
+          onerror="this.src='https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80'" />
+        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+      <div class="g-item reveal" data-src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&q=80" alt="Grapes on vine"
+          onerror="this.src='https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&q=80'" />
+        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ LIGHTBOX ═══════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Close"><i class="fas fa-times"></i></button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+  <img class="lb-img" id="lbImg" src="" alt="Gallery image" />
+  <button class="lb-next" id="lbNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Order or <em>Enquire</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form-wrap reveal">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 000 000 0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="hello@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">— Select subject —</option>
+              <option>Retail Order</option>
+              <option>Wholesale Enquiry</option>
+              <option>Delivery Question</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your requirements…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+          <p class="form-success" id="formSuccess">✅ Message sent! We'll get back to you within 24 hours.</p>
+        </form>
+      </div>
+      <div class="contact-info reveal">
+        <div class="ci-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <div><strong>Visit Us</strong><p>FruitLux Distribution Centre<br />142 Orchard Lane, Green District<br />New York, NY 10001</p></div>
+        </div>
+        <div class="ci-card">
+          <i class="fas fa-phone-alt"></i>
+          <div><strong>Call Us</strong><p>+1 (800) 555-FRUIT<br />Mon–Sat, 6 AM – 8 PM</p></div>
+        </div>
+        <div class="ci-card">
+          <i class="fas fa-envelope"></i>
+          <div><strong>Email Us</strong><p>orders@fruitlux.com<br />wholesale@fruitlux.com</p></div>
+        </div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9!2d-73.9857!3d40.7484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI5JzU0LjIiTiA3M8KwNTknMDguNSJX!5e0!3m2!1sen!2sus!4v1234567890"
+            width="100%" height="220" style="border:0;border-radius:12px;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="FruitLux Location">
+          </iframe>
+        </div>
+        <a href="https://wa.me/18005553784" class="whatsapp-inline" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo">
+          <span class="logo-icon">🌿</span>
+          <span class="logo-text">Fruit<em>Lux</em></span>
+        </a>
+        <p>Premium organic and imported fruits for retail and wholesale. Freshness guaranteed, every single day.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#products">Organic Fruits</a></li>
+          <li><a href="#products">Imported Fruits</a></li>
+          <li><a href="#products">Seasonal Picks</a></li>
+          <li><a href="#contact">Wholesale</a></li>
+          <li><a href="#contact">Gift Hampers</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Get seasonal deals and harvest alerts in your inbox.</p>
+        <form class="nl-form" id="nlForm">
+          <input type="email" placeholder="your@email.com" required aria-label="Email for newsletter" />
+          <button type="submit" aria-label="Subscribe"><i class="fas fa-arrow-right"></i></button>
+        </form>
+        <p class="nl-success" id="nlSuccess">🌿 You're subscribed!</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FruitLux. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ FLOATING BUTTONS ═══════════════ -->
+<a href="https://wa.me/18005553784" class="fab-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ═══════════════ CART DRAWER ═══════════════ -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Basket</h3>
+    <button class="cart-close" id="cartClose" aria-label="Close cart"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your basket is empty 🍃</p></div>
+  <div class="cart-total" id="cartTotal"></div>
+  <button class="btn btn-primary btn-full" id="checkoutBtn">Checkout <i class="fas fa-arrow-right"></i></button>
+</div>
+<div class="cart-backdrop" id="cartBackdrop"></div>
+
+<!-- ═══════════════ TOAST ═══════════════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─────────────────────────────────────────────
+   LOADER
+───────────────────────────────────────────── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1800);
+});
+
+/* ─────────────────────────────────────────────
+   DARK MODE
+───────────────────────────────────────────── */
+const body = document.getElementById('body');
+const darkToggle = document.getElementById('darkToggle');
+const saved = localStorage.getItem('fruitlux-theme');
+if (saved === 'dark') {
+  body.classList.replace('light-mode', 'dark-mode');
+  darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+}
+darkToggle.addEventListener('click', () => {
+  const isDark = body.classList.contains('dark-mode');
+  body.classList.replace(isDark ? 'dark-mode' : 'light-mode', isDark ? 'light-mode' : 'dark-mode');
+  darkToggle.innerHTML = `<i class="fas fa-${isDark ? 'moon' : 'sun'}"></i>`;
+  localStorage.setItem('fruitlux-theme', isDark ? 'light' : 'dark');
+});
+
+/* ─────────────────────────────────────────────
+   NAVBAR SCROLL
+───────────────────────────────────────────── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 30);
+  document.getElementById('backToTop').classList.toggle('show', window.scrollY > 400);
+});
+
+/* ─────────────────────────────────────────────
+   HAMBURGER / MOBILE NAV
+───────────────────────────────────────────── */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────── */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i % 4) * 0.1 + 's';
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ─────────────────────────────────────────────
+   COUNTER ANIMATION
+───────────────────────────────────────────── */
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current).toLocaleString();
+        if (current >= target) clearInterval(timer);
+      }, 16);
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+/* ─────────────────────────────────────────────
+   PRODUCT FILTER
+───────────────────────────────────────────── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.product-card').forEach(card => {
+      const match = filter === 'all' || card.dataset.category === filter;
+      card.classList.toggle('hidden', !match);
+      if (match) {
+        card.style.animation = 'none';
+        card.offsetHeight; // reflow
+        card.style.animation = '';
+      }
+    });
+  });
+});
+
+/* ─────────────────────────────────────────────
+   TOAST
+───────────────────────────────────────────── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ─────────────────────────────────────────────
+   CART
+───────────────────────────────────────────── */
+let cart = JSON.parse(localStorage.getItem('fruitlux-cart') || '[]');
+
+function saveCart() { localStorage.setItem('fruitlux-cart', JSON.stringify(cart)); }
+
+function renderCart() {
+  const items = document.getElementById('cartItems');
+  const total = document.getElementById('cartTotal');
+  const count = document.getElementById('cartCount');
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+
+  count.textContent = totalQty;
+  count.classList.toggle('show', totalQty > 0);
+
+  if (!cart.length) {
+    items.innerHTML = '<p class="cart-empty">Your basket is empty 🍃</p>';
+    total.textContent = '';
+    return;
+  }
+
+  items.innerHTML = cart.map((item, idx) => `
+    <div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+      </div>
+      <div class="cart-item-qty">
+        <button onclick="changeQty(${idx}, -1)">−</button>
+        <span>${item.qty}</span>
+        <button onclick="changeQty(${idx}, 1)">+</button>
+      </div>
+      <button class="cart-item-remove" onclick="removeItem(${idx})"><i class="fas fa-trash"></i></button>
+    </div>
+  `).join('');
+
+  const sum = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  total.textContent = `Total: $${sum.toFixed(2)}`;
+}
+
+function addToCart(name, price) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) { existing.qty++; }
+  else { cart.push({ name, price: parseFloat(price), qty: 1 }); }
+  saveCart(); renderCart();
+  showToast(`🛒 ${name} added to basket!`);
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  saveCart(); renderCart();
+}
+
+function removeItem(idx) {
+  cart.splice(idx, 1);
+  saveCart(); renderCart();
+}
+
+// Open / close cart
+const cartBtn = document.getElementById('cartBtn');
+const cartDrawer = document.getElementById('cartDrawer');
+const cartClose = document.getElementById('cartClose');
+const cartBackdrop = document.getElementById('cartBackdrop');
+
+function openCart() { cartDrawer.classList.add('open'); cartBackdrop.classList.add('show'); }
+function closeCart() { cartDrawer.classList.remove('open'); cartBackdrop.classList.remove('show'); }
+
+cartBtn.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartBackdrop.addEventListener('click', closeCart);
+
+document.querySelectorAll('.add-cart').forEach(btn => {
+  btn.addEventListener('click', () => addToCart(btn.dataset.name, btn.dataset.price));
+});
+
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+  if (!cart.length) { showToast('🍃 Your basket is empty!'); return; }
+  showToast('✅ Order placed! We\'ll contact you shortly.');
+  cart = []; saveCart(); renderCart(); closeCart();
+});
+
+renderCart();
+
+/* ─────────────────────────────────────────────
+   TESTIMONIALS SLIDER
+───────────────────────────────────────────── */
+const track = document.getElementById('testiTrack');
+const dotsContainer = document.getElementById('testiDots');
+const cards = track.querySelectorAll('.testi-card');
+let currentSlide = 0;
+let slidesVisible = 3;
+let autoSlideTimer;
+
+function getVisible() {
+  return window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 1 : 3;
+}
+
+function buildDots() {
+  slidesVisible = getVisible();
+  const total = Math.ceil(cards.length / slidesVisible);
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `Slide ${i + 1}`);
+    d.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(d);
+  }
+}
+
+function goToSlide(idx) {
+  slidesVisible = getVisible();
+  const maxIdx = Math.ceil(cards.length / slidesVisible) - 1;
+  currentSlide = Math.max(0, Math.min(idx, maxIdx));
+  const cardWidth = cards[0].offsetWidth + 24; // gap
+  track.style.transform = `translateX(-${currentSlide * slidesVisible * cardWidth}px)`;
+  document.querySelectorAll('.testi-dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+}
+
+function nextSlide() {
+  const total = Math.ceil(cards.length / getVisible());
+  goToSlide((currentSlide + 1) % total);
+}
+function prevSlide() {
+  const total = Math.ceil(cards.length / getVisible());
+  goToSlide((currentSlide - 1 + total) % total);
+}
+
+document.getElementById('testiNext').addEventListener('click', () => { nextSlide(); resetAuto(); });
+document.getElementById('testiPrev').addEventListener('click', () => { prevSlide(); resetAuto(); });
+
+function startAuto() { autoSlideTimer = setInterval(nextSlide, 4500); }
+function resetAuto() { clearInterval(autoSlideTimer); startAuto(); }
+
+buildDots();
+startAuto();
+window.addEventListener('resize', () => { buildDots(); goToSlide(0); });
+
+/* ─────────────────────────────────────────────
+   GALLERY LIGHTBOX
+───────────────────────────────────────────── */
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const galleryItems = [...document.querySelectorAll('.g-item')];
+let lbCurrent = 0;
+
+galleryItems.forEach((item, i) => {
+  item.addEventListener('click', () => { lbCurrent = i; openLb(); });
+});
+
+function openLb() {
+  lbImg.src = galleryItems[lbCurrent].dataset.src || galleryItems[lbCurrent].querySelector('img').src;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', () => {
+  lbCurrent = (lbCurrent - 1 + galleryItems.length) % galleryItems.length;
+  openLb();
+});
+document.getElementById('lbNext').addEventListener('click', () => {
+  lbCurrent = (lbCurrent + 1) % galleryItems.length;
+  openLb();
+});
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+  if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+});
+
+/* ─────────────────────────────────────────────
+   CONTACT FORM
+───────────────────────────────────────────── */
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!name || !email || !message) { showToast('⚠️ Please fill in all required fields.'); return; }
+  const success = document.getElementById('formSuccess');
+  success.classList.add('show');
+  e.target.reset();
+  setTimeout(() => success.classList.remove('show'), 5000);
+  showToast('✅ Message sent successfully!');
+});
+
+/* ─────────────────────────────────────────────
+   NEWSLETTER FORM
+───────────────────────────────────────────── */
+document.getElementById('nlForm').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('nlSuccess').classList.add('show');
+  e.target.reset();
+  showToast('🌿 Subscribed to newsletter!');
+});
+
+/* ─────────────────────────────────────────────
+   BACK TO TOP
+───────────────────────────────────────────── */
+document.getElementById('backToTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─────────────────────────────────────────────
+   HERO REVEAL ON LOAD
+───────────────────────────────────────────── */
+setTimeout(() => {
+  document.querySelector('.hero-content')?.classList.add('visible');
+}, 2000);
+</script>
 </body>
 </html>
